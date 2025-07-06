@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: backend-crash-alert
+  namespace: monitoring
+spec:
+  groups:
+    - name: backend.rules
+      rules:
+        - alert: BackendContainerRestarted
+          expr: increase(kube_pod_container_status_restarts_total{namespace="bookexchange", pod=~"backend.*"}[5m]) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Backend pod restarted"
+            description: "The backend pod has restarted within the last 5 minutes."
