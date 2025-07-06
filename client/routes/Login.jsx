@@ -31,7 +31,7 @@ const Login = ({ changeState, loggedIn, error }) => {
 
   return (
     <div className="usercred-box">
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
       <div className="usercred-title">Book Exchange</div>
       <form className="usercred-form" onSubmit={login}>
         <input
